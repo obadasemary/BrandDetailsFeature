@@ -65,7 +65,7 @@ struct ProductView: View {
         .shadow(radius: 5)
         .frame(height: 280)
         .onTapGesture {
-            event(.openProductDeatils)
+            event(.openProductDeatils(product))
         }
     }
 }
@@ -74,7 +74,7 @@ extension ProductView {
     
     enum ProductViewEvents {
         
-        case openProductDeatils
+        case openProductDeatils(ProductAdapter)
         case addCart
     }
 }

@@ -108,6 +108,10 @@ extension BrandDetailsViewModel {
         // Return the value of the cursor query item, if it exists
         return cursorQueryItem?.value
     }
+    
+    func openProductDetails(_ productAdapter: ProductAdapter) {
+        navigationHandler(.openProductDetails(productAdapter))
+    }
 }
 
 // MARK: - Navigation

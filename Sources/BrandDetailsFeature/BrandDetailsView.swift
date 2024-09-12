@@ -32,8 +32,8 @@ public struct BrandDetailsView: View {
                         ForEach(viewModel.productsAdapters) { product in
                             ProductView(product: product) { events in
                                 switch events {
-                                case .openProductDeatils:
-                                    print("openProductDeatils")
+                                case .openProductDeatils(let productAdapter):
+                                    viewModel.openProductDetails(productAdapter)
                                 case .addCart:
                                     print("addCart")
                                 }
