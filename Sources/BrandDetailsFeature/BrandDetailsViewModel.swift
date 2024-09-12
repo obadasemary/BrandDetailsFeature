@@ -17,7 +17,7 @@ public final class BrandDetailsViewModel: ObservableObject {
     // Published property to store brand response and errors
     @Published var brandResponse: BrandResponseEntity?
     @Published var productsEntity: [ProductEntity] = []
-    @Published var productsAdapters: [ProductAdapter] = []
+    @Published var productsAdapters: [BrandUseCase.ProductAdapter] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
@@ -88,9 +88,9 @@ extension BrandDetailsViewModel {
         isLoading = false
     }
     
-    private func toProductsAdapters(_ entity: [ProductEntity]) -> [ProductAdapter] {
+    private func toProductsAdapters(_ entity: [ProductEntity]) -> [BrandUseCase.ProductAdapter] {
         entity.map { productEntity in
-            ProductAdapter(productEntity)
+            BrandUseCase.ProductAdapter(productEntity)
         }
     }
     
@@ -109,7 +109,7 @@ extension BrandDetailsViewModel {
         return cursorQueryItem?.value
     }
     
-    func openProductDetails(_ productAdapter: ProductAdapter) {
+    func openProductDetails(_ productAdapter: BrandUseCase.ProductAdapter) {
         navigationHandler(.openProductDetails(productAdapter))
     }
 }
@@ -120,6 +120,6 @@ extension BrandDetailsViewModel {
     public typealias NavigationActionHandler = (BrandDetailsViewModel.NavigationAction) -> Void
     
     public enum NavigationAction {
-        case openProductDetails(ProductAdapter)
+        case openProductDetails(BrandUseCase.ProductAdapter)
     }
 }
