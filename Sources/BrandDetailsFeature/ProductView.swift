@@ -14,59 +14,58 @@ struct ProductView: View {
     let event: (ProductViewEvents) -> Void
     
     var body: some View {
-        Button {
-            event(.openProductDeatils)
-        } label: {
-            VStack(alignment: .leading, spacing: 4) {
-                ZStack(alignment: .topLeading) {
-                    RemoteImageView(resource: product.imageResource)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .cornerRadius(8)
-                    
-                    if !product.promotionTitle.isEmpty {
-                        Text(product.promotionTitle)
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .padding(4)
-                            .background(Color.black.opacity(0.7))
-                            .foregroundColor(.white)
-                            .cornerRadius(4)
-                            .padding(6)
-                    }
-                }
+        VStack(alignment: .leading, spacing: 4) {
+            ZStack(alignment: .topLeading) {
+                RemoteImageView(resource: product.imageResource)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .cornerRadius(8)
                 
-                // Product Name
-                Text(product.name)
-                    .font(.headline)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(2)
-                    .padding(.top, 4)
-                
-                Spacer()
-                
-                // Product Price
-                Text("\(product.price) SAR")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.leading)
-                
-                Button {
-                    event(.addCart)
-                } label: {
-                    Text("أضف للسلة")
-                        .font(.headline)
+                if !product.promotionTitle.isEmpty {
+                    Text(product.promotionTitle)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(4)
+                        .background(Color.black.opacity(0.7))
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.black)
-                        .cornerRadius(8)
+                        .cornerRadius(4)
+                        .padding(6)
                 }
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(12)
-            .shadow(radius: 5)
-            .frame(height: 280)
+            
+            // Product Name
+            Text(product.name)
+                .font(.headline)
+                .multilineTextAlignment(.leading)
+                .lineLimit(2)
+                .padding(.top, 4)
+            
+            Spacer()
+            
+            // Product Price
+            Text("\(product.price) SAR")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+            
+            Button {
+                event(.addCart)
+            } label: {
+                Text("أضف للسلة")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.black)
+                    .cornerRadius(8)
+            }
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(radius: 5)
+        .frame(height: 280)
+        .onTapGesture {
+            event(.openProductDeatils)
         }
     }
 }
@@ -95,9 +94,9 @@ extension ProductView {
     return ProductView(product: product) { events in
         switch events {
         case .openProductDeatils:
-            break
+            print("openProductDeatils")
         case .addCart:
-            break
+            print("addCart")
         }
     }
 }

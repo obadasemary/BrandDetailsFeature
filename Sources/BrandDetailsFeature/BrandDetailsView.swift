@@ -75,10 +75,15 @@ private extension BrandDetailsView {
     }
 }
 
-//#Preview {
-//    
-////    let viewModel = BrandDetailsViewModel(
-////        brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase(), navigationHandler: BrandDetailsViewModel.NavigationActionHandler
-////    )
-////    return BrandDetailsView(viewModel: viewModel)
-//}
+#Preview {
+    let viewModel = StateObject(
+        wrappedValue: BrandDetailsViewModel(
+            brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase(),
+            navigationHandler: {
+                _ in
+            }
+        )
+    )
+    
+    return BrandDetailsView(viewModel: viewModel)
+}
