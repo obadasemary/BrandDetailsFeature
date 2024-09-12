@@ -33,9 +33,9 @@ public struct BrandDetailsView: View {
                             ProductView(product: product) { events in
                                 switch events {
                                 case .openProductDeatils:
-                                    break
+                                    print("openProductDeatils")
                                 case .addCart:
-                                    break
+                                    print("addCart")
                                 }
                             }
                         }
