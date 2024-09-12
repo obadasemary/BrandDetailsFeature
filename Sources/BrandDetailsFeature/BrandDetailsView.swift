@@ -18,6 +18,10 @@ public struct BrandDetailsView: View {
 //    init(viewModel: StateObject<BrandDetailsViewModel>) {
 //        self._viewModel = viewModel
 //    }
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     // MARK: - Initialization
     public init(viewModel: BrandDetailsViewModel) {
@@ -26,29 +30,33 @@ public struct BrandDetailsView: View {
     
     public var body: some View {
         VStack {
-            if viewModel.isLoading {
-                BrandUILoadingPlaceholderView()
-                    .padding(.top, BrandUIConstants.spacing8)
-                    .padding(.horizontal, BrandUIConstants.spacing16)
-                    .padding(.bottom, BrandUIConstants.spacing24)
-            } else if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-            } else if let brandResponse = viewModel.brandResponse {
-                // Display the brand details here
-                List(brandResponse.data) { product in
-                    Text(product.name ?? "No Name")
+            if !viewModel.productsAdapters.isEmpty {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(viewModel.productsAdapters) { product in
+                            ProductView(product: product)
+                        }
+                        
+                        // Loading spinner for paging
+                        if viewModel.isLoading {
+                            ProgressView()
+                        } else {
+                            Text("Load More")
+                                .onAppear {
+                                    viewModel.fetchBrandDetails()
+                                }
+                        }
+                    }
+                    .padding(16)
                 }
+            } else if viewModel.isLoading {
+                makeLoadingStateView()
             } else {
-                Text("No Data Available")
+                Text(viewModel.errorMessage ?? "No products available")
             }
         }
         .onLoad {
-            viewModel.fetchBrandDetails(
-                brandId: "1724782240",
-                page: 1,
-                perPage: 20
-            )
+            viewModel.fetchBrandDetails()
         }
     }
 }
@@ -59,4 +67,12 @@ public struct BrandDetailsView: View {
         brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase()
     )
     return BrandDetailsView(viewModel: viewModel)
+private extension BrandDetailsView {
+    @ViewBuilder
+    func makeLoadingStateView() -> some View {
+        BrandUILoadingPlaceholderView()
+            .padding(.top, BrandUIConstants.spacing8)
+            .padding(.horizontal, BrandUIConstants.spacing16)
+            .padding(.bottom, BrandUIConstants.spacing24)
+    }
 }
