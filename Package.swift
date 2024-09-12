@@ -16,10 +16,10 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../AppDependencyModule"),
-        .package(path: "../BrandUseCase"),
-        .package(path: "../BrandUI"),
-        .package(path: "../BrandRemoteImage")
+        .package(url: "https://github.com/obadasemary/AppDependencyModule.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/obadasemary/BrandUseCase.git", .upToNextMajor(from: "1.0.3")),
+        .package(url: "https://github.com/obadasemary/BrandUI.git", .upToNextMajor(from: "1.0.2")),
+        .package(url: "https://github.com/obadasemary/BrandRemoteImage.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
