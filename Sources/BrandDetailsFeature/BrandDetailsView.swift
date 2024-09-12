@@ -30,7 +30,14 @@ public struct BrandDetailsView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(viewModel.productsAdapters) { product in
-                            ProductView(product: product)
+                            ProductView(product: product) { events in
+                                switch events {
+                                case .openProductDeatils:
+                                    break
+                                case .addCart:
+                                    break
+                                }
+                            }
                         }
                         
                         // Loading spinner for paging

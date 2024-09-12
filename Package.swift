@@ -16,8 +16,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/obadasemary/AppDependencyModule.git", .upToNextMajor(from: "1.0.0")),
-        .package(url: "https://github.com/obadasemary/BrandUseCase.git", .upToNextMajor(from: "1.0.3")),
+        .package(url: "https://github.com/obadasemary/AppDependencyModule.git", .upToNextMajor(from: "1.0.1")),
+        .package(url: "https://github.com/obadasemary/BrandUseCase.git", .upToNextMajor(from: "1.0.4")),
         .package(url: "https://github.com/obadasemary/BrandUI.git", .upToNextMajor(from: "1.0.2")),
         .package(url: "https://github.com/obadasemary/BrandRemoteImage.git", .upToNextMajor(from: "1.0.0")),
     ],

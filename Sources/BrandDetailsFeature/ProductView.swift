@@ -11,60 +11,75 @@ import BrandRemoteImage
 struct ProductView: View {
     
     let product: ProductAdapter
+    let event: (ProductViewEvents) -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            ZStack(alignment: .topLeading) {
-                RemoteImageView(resource: product.imageResource)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .cornerRadius(8)
+        Button {
+            event(.openProductDeatils)
+        } label: {
+            VStack(alignment: .leading, spacing: 4) {
+                ZStack(alignment: .topLeading) {
+                    RemoteImageView(resource: product.imageResource)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .cornerRadius(8)
+                    
+                    if !product.promotionTitle.isEmpty {
+                        Text(product.promotionTitle)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(4)
+                            .background(Color.black.opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(4)
+                            .padding(6)
+                    }
+                }
                 
-                if !product.promotionTitle.isEmpty {
-                    Text(product.promotionTitle)
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .padding(4)
-                        .background(Color.black.opacity(0.7))
+                // Product Name
+                Text(product.name)
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                    .padding(.top, 4)
+                
+                Spacer()
+                
+                // Product Price
+                Text("\(product.price) SAR")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+                
+                Button {
+                    event(.addCart)
+                } label: {
+                    Text("أضف للسلة")
+                        .font(.headline)
                         .foregroundColor(.white)
-                        .cornerRadius(4)
-                        .padding(6)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.black)
+                        .cornerRadius(8)
                 }
             }
-            
-            // Product Name
-            Text(product.name)
-                .font(.headline)
-                .multilineTextAlignment(.leading)
-                .lineLimit(2)
-                .padding(.top, 4)
-            
-            Spacer()
-            
-            // Product Price
-            Text("\(product.price) SAR")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.leading)
-            
-            Button {
-                
-            } label: {
-                Text("أضف للسلة")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.black)
-                    .cornerRadius(8)
-            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(12)
+            .shadow(radius: 5)
+            .frame(height: 280)
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(12)
-        .shadow(radius: 5)
-        .frame(height: 280)
     }
 }
+
+extension ProductView {
+    
+    enum ProductViewEvents {
+        
+        case openProductDeatils
+        case addCart
+    }
+}
+
 
 #Preview {
     let product = ProductAdapter.init(
@@ -77,5 +92,12 @@ struct ProductView: View {
         salePrice: 0,
         startingPrice: 11.5
     )
-    return ProductView(product: product)
+    return ProductView(product: product) { events in
+        switch events {
+        case .openProductDeatils:
+            break
+        case .addCart:
+            break
+        }
+    }
 }

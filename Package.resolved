@@ -1,5 +1,5 @@
 {
-  "originHash" : "0689e5bba867535d85d58346f538290f8a9148e555d51568aba75e1d8c7a8420",
+  "originHash" : "a78629439300a62782b37c3953b02e1f95c33b0292383ae08f3d7549857c4674",
   "pins" : [
     {
       "identity" : "appdependencymodule",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/obadasemary/BrandRepository.git",
       "state" : {
-        "revision" : "ebb2fa1c840a29c528f103dd92914fa547a2cd90",
-        "version" : "1.0.2"
+        "revision" : "c50500b21749bcdee84921901dc150955ccb85bc",
+        "version" : "1.0.3"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/obadasemary/BrandUseCase.git",
       "state" : {
-        "revision" : "70346e729982e33c489ea02bc13188cd1b1daf7d",
-        "version" : "1.0.3"
+        "revision" : "5702758a9290d5b6a1185ceb090833b6a0e6c2d5",
+        "version" : "1.0.4"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/obadasemary/CoreAPI.git",
       "state" : {
-        "revision" : "9df7eef61ec17657adf619b97f02ab3cfe974168",
-        "version" : "1.0.2"
+        "revision" : "d507b09e8a44e8b75475c7de130d043ffdfa61b9",
+        "version" : "1.0.3"
       }
     },
     {
