@@ -14,19 +14,15 @@ public struct BrandDetailsView: View {
     // MARK: - Properties
     @StateObject private var viewModel: BrandDetailsViewModel
     
-//    // MARK: - Initialization
-//    init(viewModel: StateObject<BrandDetailsViewModel>) {
-//        self._viewModel = viewModel
-//    }
+    // MARK: - Initialization
+    init(viewModel: StateObject<BrandDetailsViewModel>) {
+        self._viewModel = viewModel
+    }
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    // MARK: - Initialization
-    public init(viewModel: BrandDetailsViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
-    }
     
     public var body: some View {
         VStack {
@@ -55,6 +51,7 @@ public struct BrandDetailsView: View {
                 Text(viewModel.errorMessage ?? "No products available")
             }
         }
+        .navigationTitle("Salla")
         .onLoad {
             viewModel.fetchBrandDetails()
         }
@@ -71,10 +68,10 @@ private extension BrandDetailsView {
     }
 }
 
-#Preview {
-    
-    let viewModel = BrandDetailsViewModel(
-        brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase()
-    )
-    return BrandDetailsView(viewModel: viewModel)
-}
+//#Preview {
+//    
+////    let viewModel = BrandDetailsViewModel(
+////        brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase(), navigationHandler: BrandDetailsViewModel.NavigationActionHandler
+////    )
+////    return BrandDetailsView(viewModel: viewModel)
+//}

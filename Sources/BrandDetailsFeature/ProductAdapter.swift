@@ -10,10 +10,10 @@ import SwiftUI
 import BrandUseCase
 import BrandRemoteImage
 
-struct ProductAdapter: Identifiable, Hashable {
-    typealias ID = String
+public struct ProductAdapter: Identifiable, Hashable {
+    public typealias ID = String
     
-    let id: ID
+    public let id: ID
     let imagePath: String
     let imageResource: RemoteImageResource
     let name: String
@@ -23,7 +23,7 @@ struct ProductAdapter: Identifiable, Hashable {
     let salePrice: Double
     let startingPrice: Double
     
-    init(
+    public init(
         id: ID,
         imagePath: String,
         name: String,

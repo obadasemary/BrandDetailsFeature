@@ -12,6 +12,7 @@ import Combine
 public final class BrandDetailsViewModel: ObservableObject {
     
     private let brandDetailsUseCase: BrandDetailsUseCaseProtocol
+    private let navigationHandler: NavigationActionHandler
     
     // Published property to store brand response and errors
     @Published var brandResponse: BrandResponseEntity?
@@ -27,9 +28,11 @@ public final class BrandDetailsViewModel: ObservableObject {
     private var cursorNext: String?
     
     public init(
-        brandDetailsUseCase: BrandDetailsUseCaseProtocol
+        brandDetailsUseCase: BrandDetailsUseCaseProtocol,
+        navigationHandler: @escaping BrandDetailsViewModel.NavigationActionHandler
     ) {
         self.brandDetailsUseCase = brandDetailsUseCase
+        self.navigationHandler = navigationHandler
     }
 }
 
@@ -104,5 +107,15 @@ extension BrandDetailsViewModel {
         
         // Return the value of the cursor query item, if it exists
         return cursorQueryItem?.value
+    }
+}
+
+// MARK: - Navigation
+extension BrandDetailsViewModel {
+    
+    public typealias NavigationActionHandler = (BrandDetailsViewModel.NavigationAction) -> Void
+    
+    public enum NavigationAction {
+        case openProductDetails(ProductAdapter)
     }
 }
