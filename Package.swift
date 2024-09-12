@@ -18,7 +18,8 @@ let package = Package(
     dependencies: [
         .package(path: "../AppDependencyModule"),
         .package(path: "../BrandUseCase"),
-        .package(path: "../BrandUI")
+        .package(path: "../BrandUI"),
+        .package(path: "../BrandRemoteImage")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -28,7 +29,8 @@ let package = Package(
             dependencies: [
                 "AppDependencyModule",
                 "BrandUseCase",
-                "BrandUI"
+                "BrandUI",
+                "BrandRemoteImage"
             ]
         ),
         .testTarget(
