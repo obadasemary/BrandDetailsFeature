@@ -61,12 +61,6 @@ public struct BrandDetailsView: View {
     }
 }
 
-#Preview {
-    
-    let viewModel = BrandDetailsViewModel(
-        brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase()
-    )
-    return BrandDetailsView(viewModel: viewModel)
 private extension BrandDetailsView {
     @ViewBuilder
     func makeLoadingStateView() -> some View {
@@ -75,4 +69,12 @@ private extension BrandDetailsView {
             .padding(.horizontal, BrandUIConstants.spacing16)
             .padding(.bottom, BrandUIConstants.spacing24)
     }
+}
+
+#Preview {
+    
+    let viewModel = BrandDetailsViewModel(
+        brandDetailsUseCase: AppDependencyModule.makeBrandsUseCase()
+    )
+    return BrandDetailsView(viewModel: viewModel)
 }
